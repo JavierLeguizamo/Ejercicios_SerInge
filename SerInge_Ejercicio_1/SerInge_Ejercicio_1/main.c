@@ -18,13 +18,11 @@
 #define RECORRER_BIT(PUERTO)			 PUERTO = (PUERTO_LEDS!=FIN_DE_SECUENCIA)?\
 												   PUERTO<<1 | _BV(STATUS_BIT):\
 												   _BV(PORTD0) | _BV(STATUS_BIT)
-#define EscribirPin(Pin,Puerto) escribirPin(Pin,Puerto)
+
 #include <avr/io.h>
 #include <util/delay.h>
 
-void escribirPin(int pin,int puerto){
-	asm("nop");
-}
+
 int main(void)
 {
     /* Replace with your application code */
@@ -33,7 +31,6 @@ int main(void)
 	ENCENDER_LED(PUERTO_LEDS,BIT_INICIO);
     while (1) 
     {
-		EscribirPin(1,PORTD);
 		RECORRER_BIT(PUERTO_LEDS);
 //		_delay_ms(500);
     }

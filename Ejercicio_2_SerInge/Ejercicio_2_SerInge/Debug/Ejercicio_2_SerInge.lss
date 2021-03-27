@@ -21,11 +21,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   8 .debug_frame  00000054  00000000  00000000  00001430  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000003f1  00000000  00000000  00001484  2**0
+  9 .debug_str    000003eb  00000000  00000000  00001484  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000010e  00000000  00000000  00001875  2**0
+ 10 .debug_loc    0000010e  00000000  00000000  0000186f  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000028  00000000  00000000  00001983  2**0
+ 11 .debug_ranges 00000028  00000000  00000000  0000197d  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -110,28 +110,28 @@ void parpadeo(){
   aa:	00 00       	nop
   ac:	08 95       	ret
 
-000000ae <desplazamiento>:
+000000ae <rotacion>:
 	_delay_ms(ESPERA);
 	
 } 
-void desplazamiento(){
+void rotacion(){
 	PORTD = (PORTD!=128)?((PORTD==SECUENCIA_1) || (PORTD==SECUENCIA_2))?1:(PORTD<<1):1;
   ae:	8b b1       	in	r24, 0x0b	; 11
   b0:	80 38       	cpi	r24, 0x80	; 128
-  b2:	49 f0       	breq	.+18     	; 0xc6 <desplazamiento+0x18>
+  b2:	49 f0       	breq	.+18     	; 0xc6 <rotacion+0x18>
   b4:	8b b1       	in	r24, 0x0b	; 11
   b6:	85 35       	cpi	r24, 0x55	; 85
-  b8:	41 f0       	breq	.+16     	; 0xca <desplazamiento+0x1c>
+  b8:	41 f0       	breq	.+16     	; 0xca <rotacion+0x1c>
   ba:	8b b1       	in	r24, 0x0b	; 11
   bc:	8a 3a       	cpi	r24, 0xAA	; 170
-  be:	39 f0       	breq	.+14     	; 0xce <desplazamiento+0x20>
+  be:	39 f0       	breq	.+14     	; 0xce <rotacion+0x20>
   c0:	8b b1       	in	r24, 0x0b	; 11
   c2:	88 0f       	add	r24, r24
-  c4:	05 c0       	rjmp	.+10     	; 0xd0 <desplazamiento+0x22>
+  c4:	05 c0       	rjmp	.+10     	; 0xd0 <rotacion+0x22>
   c6:	81 e0       	ldi	r24, 0x01	; 1
-  c8:	03 c0       	rjmp	.+6      	; 0xd0 <desplazamiento+0x22>
+  c8:	03 c0       	rjmp	.+6      	; 0xd0 <rotacion+0x22>
   ca:	81 e0       	ldi	r24, 0x01	; 1
-  cc:	01 c0       	rjmp	.+2      	; 0xd0 <desplazamiento+0x22>
+  cc:	01 c0       	rjmp	.+2      	; 0xd0 <rotacion+0x22>
   ce:	81 e0       	ldi	r24, 0x01	; 1
   d0:	8b b9       	out	0x0b, r24	; 11
   d2:	2f e9       	ldi	r18, 0x9F	; 159
@@ -140,8 +140,8 @@ void desplazamiento(){
   d8:	21 50       	subi	r18, 0x01	; 1
   da:	80 40       	sbci	r24, 0x00	; 0
   dc:	90 40       	sbci	r25, 0x00	; 0
-  de:	e1 f7       	brne	.-8      	; 0xd8 <desplazamiento+0x2a>
-  e0:	00 c0       	rjmp	.+0      	; 0xe2 <desplazamiento+0x34>
+  de:	e1 f7       	brne	.-8      	; 0xd8 <rotacion+0x2a>
+  e0:	00 c0       	rjmp	.+0      	; 0xe2 <rotacion+0x34>
   e2:	00 00       	nop
   e4:	08 95       	ret
 
@@ -165,7 +165,7 @@ int main(void)
   ee:	01 c0       	rjmp	.+2      	; 0xf2 <main+0xc>
 				break;
 			case estado3:
-				desplazamiento();
+				rotacion();
 				break;
 			default:
 				estado = estado1;
@@ -210,8 +210,8 @@ void apagado(){
 				break;
  110:	f0 cf       	rjmp	.-32     	; 0xf2 <main+0xc>
 			case estado3:
-				desplazamiento();
- 112:	0e 94 57 00 	call	0xae	; 0xae <desplazamiento>
+				rotacion();
+ 112:	0e 94 57 00 	call	0xae	; 0xae <rotacion>
 				break;
  116:	ed cf       	rjmp	.-38     	; 0xf2 <main+0xc>
 

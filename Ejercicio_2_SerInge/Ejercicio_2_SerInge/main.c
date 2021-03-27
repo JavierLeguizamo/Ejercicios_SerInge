@@ -30,7 +30,7 @@ void parpadeo(){
 	_delay_ms(ESPERA);
 	
 } 
-void desplazamiento(){
+void rotacion(){
 	PORTD = (PORTD!=128)?((PORTD==SECUENCIA_1) || (PORTD==SECUENCIA_2))?1:(PORTD<<1):1;
 	_delay_ms(ESPERA);
 }
@@ -54,7 +54,7 @@ int main(void)
 				parpadeo();
 				break;
 			case estado3:
-				desplazamiento();
+				rotacion();
 				break;
 			default:
 				estado = estado1;

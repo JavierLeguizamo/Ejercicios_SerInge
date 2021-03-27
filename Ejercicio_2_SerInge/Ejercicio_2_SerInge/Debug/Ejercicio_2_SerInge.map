@@ -240,9 +240,9 @@ END GROUP
  .text.parpadeo
                 0x00000080       0x2e main.o
                 0x00000080                parpadeo
- .text.desplazamiento
+ .text.rotacion
                 0x000000ae       0x38 main.o
-                0x000000ae                desplazamiento
+                0x000000ae                rotacion
  .text.main     0x000000e6       0x32 main.o
                 0x000000e6                main
                 0x00000118                . = ALIGN (0x2)
@@ -389,11 +389,11 @@ END GROUP
  *(.debug_frame)
  .debug_frame   0x00000000       0x54 main.o
 
-.debug_str      0x00000000      0x3f1
+.debug_str      0x00000000      0x3eb
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_str     0x00000208      0x1e9 main.o
-                                0x21d (size before relaxing)
+ .debug_str     0x00000208      0x1e3 main.o
+                                0x217 (size before relaxing)
 
 .debug_loc      0x00000000      0x10e
  *(.debug_loc)

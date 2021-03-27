@@ -21,36 +21,31 @@ void apagado(void){
 }
 void parpadeo(){
  	PORTD =SEC_1  ;
-	_delay_ms(DELAY);
+// 	_delay_ms(DELAY);
 	PORTD =SEC_2;
-	_delay_ms(DELAY);
+// 	_delay_ms(DELAY);
 	
 }
 void desplazamiento(){
 	PORTD = (PORTD!=128)?((PORTD==SEC_1) || (PORTD==SEC_2))?1:(PORTD<<1):1;
-	_delay_ms(DELAY);
+// 	_delay_ms(DELAY);
 	
 }
 
 int main(void)
 {
     /* Replace with your application code */
-	Estado *estado1 = NULL;
-	Estado *estado2 = NULL;
-	Estado *estado3 = NULL;
-	Estado *estadoActual = NULL;
-	estado1 = (Estado *)malloc(sizeof(Estado));
-	estado2 = (Estado *)malloc(sizeof(Estado));
-	estado3 = (Estado *)malloc(sizeof(Estado));
-	estadoActual = (Estado *)malloc(sizeof(Estado));
+	Estado *estado1 = (Estado *)malloc(sizeof(Estado));
+	Estado *estado2 = (Estado *)malloc(sizeof(Estado));
+	Estado *estado3 = (Estado *)malloc(sizeof(Estado));
+	Estado *estadoActual = (Estado *)malloc(sizeof(Estado));
 	estado1->funcionamiento = apagado;
 	estado1->siguiente = estado2;
 	estado2->funcionamiento = parpadeo;
 	estado2->siguiente = estado3;
 	estado3->funcionamiento = desplazamiento;
 	estado3->siguiente = estado1;
-	estadoActual->funcionamiento = *estado1->funcionamiento;
-	estadoActual->siguiente = estado2;
+	estadoActual = estado1;
 	DDRD |= 0xFF;
 	DDRC &= ~(1<<DDC0);
     while (1) 
